@@ -1,0 +1,85 @@
+<div class="row">
+
+  <div class="alert alert-danger col-md-6 col-md-offset-3" ng-show="error">Ein Fehler ist aufgetreten!</div>
+
+  <div class="col-md-6 col-md-offset-3" style="text-align:center" ng-show="loading">
+    <h1>EAD-Datei wird geladen ...</h1>
+    <div class="progress progress-striped active">
+      <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+    </div>
+  </div>
+
+  <div class="col-md-4 sidebar" ng-hide="loading">
+    <ul class="nav sidenav">
+      <li ng-repeat="c in ead.archdesc.dsc.c01" ng-include="'partials/tree_item.html'"></li>
+      <li ng-repeat="c in ead.archdesc.dsc.c" ng-include="'partials/tree_item.html'"></li>
+    </ul>
+  </div>
+
+  <div class="col-md-8" ng-hide="loading">
+
+    <div class="viewport">
+    
+      <h1>{{c.did.unittitle}}</h1>
+
+      <div class="row" ng-repeat="unitid in c.did.unitid_asArray">
+        <div class="col-md-3 field-label">
+          <strong>Identifier:</strong>
+        </div>
+        <div class="col-md-9">
+          <span ng-show="unitid.__text">
+            {{unitid.__text}} <span ng-show="unitid._type">({{unitid._type}})</span>
+          </span>
+          <span ng-hide="unitid.__text">
+            {{unitid}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="abstract in c.did.abstract_asArray">
+        <div class="col-md-3 field-label">
+          <strong>Abstract:</strong>
+          <em ng-show="abstract._type">({{abstract._type}})</em>
+        </div>
+        <div class="col-md-9">
+          <span ng-show="abstract.__text">
+            {{abstract.__text}}
+          </span>
+          <span ng-hide="abstract.__text">
+            {{abstract}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="unitdate in c.did.unitdate_asArray">
+        <div class="col-md-3 field-label">
+          <strong>Laufzeit:</strong>
+        </div>
+        <div class="col-md-9">
+          <span ng-show="unitdate.__text">
+            {{unitdate.__text}}
+          </span>
+          <span ng-hide="unitdate.__text">
+            {{unitdate}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row" ng-repeat="daoloc in c.daogrp.daoloc_asArray">
+        <div class="col-md-3 field-label">
+          <strong>Digitalisat:</strong>
+        </div>
+        <div class="col-md-9">
+          <span ng-show="daoloc._role == 'mets'">
+            <a ng-href="http://dfg-viewer.de/demo/viewer/?set%5Bmets%5D={{daoloc._href|uriEncode}}" target="_blank">
+              {{daoloc._title}} im DFG-Viewer <span class="glyphicon glyphicon-new-window"></span>
+            </a>
+          </span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
