@@ -11,7 +11,7 @@
 
   <div class="col-md-4 sidebar" ng-hide="loading">
     <ul class="nav sidenav">
-      <li ng-repeat="c in ead.archdesc.dsc.c01" ng-include="'partials/tree_item.html'"></li>
+      <li ng-repeat="c in ead.archdesc.dsc.c01_asArray" ng-include="'partials/tree_item.html'"></li>
       <li ng-repeat="c in ead.archdesc.dsc.c" ng-include="'partials/tree_item.html'"></li>
     </ul>
   </div>
@@ -30,7 +30,7 @@
           <span ng-show="unitid.__text">
             {{unitid.__text}} <span ng-show="unitid._type">({{unitid._type}})</span>
           </span>
-          <span ng-hide="unitid.__text">
+          <span ng-hide="unitid.__text || unitid._type">
             {{unitid}}
           </span>
         </div>
@@ -45,7 +45,7 @@
           <span ng-show="abstract.__text">
             {{abstract.__text}}
           </span>
-          <span ng-hide="abstract.__text">
+          <span ng-hide="abstract.__text || abstract._type">
             {{abstract}}
           </span>
         </div>
@@ -73,6 +73,24 @@
           <span ng-show="daoloc._role == 'mets'">
             <a ng-href="http://dfg-viewer.de/demo/viewer/?set%5Bmets%5D={{daoloc._href|uriEncode}}" target="_blank">
               {{daoloc._title}} im DFG-Viewer <span class="glyphicon glyphicon-new-window"></span>
+            </a>
+          </span>
+        </div>
+      </div>
+      
+      <div class="row" ng-repeat="daoloc in c.did.daogrp.daoloc_asArray">
+        <div class="col-md-3 field-label">
+          <strong>Digitalisat:</strong>
+        </div>
+        <div class="col-md-9">
+          <span ng-show="daoloc._role == 'mets'">
+            <a ng-href="http://dfg-viewer.de/demo/viewer/?set%5Bmets%5D={{daoloc._href|uriEncode}}" target="_blank">
+              {{daoloc._title}} im DFG-Viewer <span class="glyphicon glyphicon-new-window"></span>
+            </a>
+          </span>
+          <span ng-hide="daoloc._role == 'mets'">
+            <a ng-href="{{resolveUrl(daoloc._href)}}" target="_blank">
+              {{daoloc._title}} <span class="glyphicon glyphicon-new-window"></span>
             </a>
           </span>
         </div>

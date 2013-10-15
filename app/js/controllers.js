@@ -67,5 +67,15 @@ function BrowseCtrl($scope, $rootScope, $location, $routeParams, $http) {
 		}
 		return c._children;
 	}
+	
+	$scope.resolveUrl = function(url) {
+		console.log("url", url);
+		if (url.indexOf("http") == 0) {
+			return url;
+		} else {
+			var base = $routeParams.src.substring(0, $routeParams.src.lastIndexOf("/"));
+			return base + "/" + url;
+		}
+	}
 
 }
