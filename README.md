@@ -1,28 +1,16 @@
-# angular-seed — the seed for AngularJS apps
+# EAD-Viewer 
 
-This project is an application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
-You can use it to quickly bootstrap your angular webapp projects and dev environment for these
-projects.
+A simple, client Javascript application for viewing EAD metadata developed in the DA-NRW project.
 
-The seed contains AngularJS libraries, test libraries and a bunch of scripts all preconfigured for
-instant web development gratification. Just clone the repo (or download the zip/tarball), start up
-our (or yours) webserver and you are ready to develop and test your application.
+EAD files can be viewed with the following call syntax:
 
-The seed app doesn't do much, just shows how to wire two controllers and views together. You can
-check it out by opening app/index.html in your browser (might not work file `file://` scheme in
-certain browsers, see note below).
+    http://<server>:<port>/ead-viewer?src=<url-of-ead-file>
 
-_Note: While angular is client-side-only technology and it's possible to create angular webapps that
-don't require a backend server at all, we recommend hosting the project files using a local
-webserver during development to avoid issues with security restrictions (sandbox) in browsers. The
-sandbox implementation varies between browsers, but quite often prevents things like cookies, xhr,
-etc to function properly when an html page is opened via `file://` scheme instead of `http://`._
+**Beware of the same origin policy:** In order for the EAD file to be accessible for the viewer it has
+to be on the same server or the delivering server has to be configured to provide the appropriate 
+[CORS](https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing) headers.
 
-
-## How to use angular-seed
-
-Clone the angular-seed repository and start hacking...
-
+The app is based on angular-seed (see documentation below).
 
 ### Running the app during development
 
